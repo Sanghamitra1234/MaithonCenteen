@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".BreakfastActivity"></activity>
+        <activity android:name=".BreakfastActivity" />
+        <activity android:name=".checkoutActivity"></activity>
     </application>
 
 </manifest>

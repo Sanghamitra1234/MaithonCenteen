@@ -1,6 +1,7 @@
 package xyz.sleepygamers.maithoncenteen;
 
 import android.content.Context;
+import android.icu.util.Measure;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,8 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import java.util.List;
 
 import xyz.sleepygamers.maithoncenteen.models.foodmenu;
+
+import static com.cepheuen.elegantnumberbutton.view.ElegantNumberButton.*;
 
 public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.ViewHolder>  {
     Context mCtx;
@@ -35,22 +38,24 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-               foodmenu foodmenu= breakfastList.get(position);
-
-
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        final foodmenu foodmenu= breakfastList.get(position);
         holder.name.setText(foodmenu.getName());
         holder.price.setText((CharSequence) foodmenu.getPrice());
         Glide.with(mCtx)
                 .load(foodmenu.getImg())
                 .into(holder.imageView);
+        holder.elegantNumberButton.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = holder.elegantNumberButton.getNumber();
+                foodmenu.setCount(Integer.parseInt(s));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-
-
-
         return breakfastList.size();
     }
 
@@ -58,14 +63,15 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.View
         private TextView name,price;
         private ImageView imageView;
         private Button add;
-        private ElegantNumberButton elegantNumberButton;
+        public ElegantNumberButton elegantNumberButton;
+
         public ViewHolder(View itemView) {
             super(itemView);
             imageView=itemView.findViewById(R.id.breakfast_img);
             name=itemView.findViewById(R.id.breakfast_name);
             price=itemView.findViewById(R.id.breakfast_price);
             add=itemView.findViewById(R.id.add_btn);
-            elegantNumberButton=itemView.findViewById(R.id.qty_button);
+            elegantNumberButton=(ElegantNumberButton) itemView.findViewById(R.id.qty_button);
 
         }
 

@@ -8,9 +8,13 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recylcerView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="745dp"
-        tools:layout_editor_absoluteY="-51dp" />
-
+         />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/checkout"
+    android:layout_below="@id/recylcerView"
+    android:text="check out"/>
 </RelativeLayout>
